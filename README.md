@@ -1,2 +1,1 @@
-# filthy-shoes-8003
-RentoMozo Website Clone
+# RentoMozo Website Clone
