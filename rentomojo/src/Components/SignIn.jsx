@@ -126,7 +126,7 @@ const SignIn = () => {
                 <Image src={"https://i.gifer.com/PSFA.gif"} />
               </Box>
               <Box width="45%">
-                <ModalHeader>Please Password</ModalHeader>
+                <ModalHeader>Please Login</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
                   <Input mb={4} value={email} disabled />
