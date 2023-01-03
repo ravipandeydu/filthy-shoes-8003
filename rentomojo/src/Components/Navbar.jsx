@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Button,
   Image,
@@ -7,34 +7,14 @@ import {
   InputGroup,
   InputRightElement,
   Box,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
-  FormControl,
-  Flex,
   Spacer,
-  Menu,
-  MenuList,
-  MenuGroup,
-  MenuItem,
-  MenuDivider,
-  MenuButton
 } from "@chakra-ui/react";
 
 import { SearchIcon } from "@chakra-ui/icons";
 import { AiOutlineShoppingCart, AiOutlineDown } from "react-icons/ai";
+import SignIn from "./SignIn";
 
 const Navbar = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [mobile, setMobile] = useState("");
-  const [done, setDone] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
-  const [otp, setOtp] = useState("");
 
   return (
     <Box maxW="1500px" margin="auto">
@@ -77,106 +57,7 @@ const Navbar = () => {
             <AiOutlineShoppingCart />
             <Text>Cart</Text>
           </Box>
-
-          <Box>
-            {!isAuth ? (
-              <Button colorScheme="red" onClick={onOpen}>
-                LOGIN/SIGNUP
-              </Button>
-            ) : (
-              <Menu>
-                <MenuButton as={Button} colorScheme="pink">
-                  Ravi
-                </MenuButton>
-                <MenuList>
-                  <MenuGroup title="Profile">
-                    <MenuItem>My Account</MenuItem>
-                    <MenuItem>Logout</MenuItem>
-                  </MenuGroup>
-                </MenuList>
-              </Menu>
-            )}
-          </Box>
-          {!done ? (
-            <Modal onClose={onClose} size={"4xl"} isOpen={isOpen}>
-              <ModalOverlay />
-              <ModalContent>
-                <Flex>
-                  <Box width="55%">
-                    <Image src={"https://i.gifer.com/PSFA.gif"} />
-                  </Box>
-                  <Box>
-                    <ModalHeader>
-                      Enter your number to Signup or Login
-                    </ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                      <FormControl>
-                        <Input
-                          type="number"
-                          placeholder="Enter Your Phone Number*"
-                          value={mobile}
-                          maxLength={10}
-                          onChange={(e) => setMobile(e.target.value)}
-                        />
-                        <Box>{mobile.length}/10</Box>
-                      </FormControl>
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button
-                        onClick={() => setDone(true)}
-                        disabled={mobile.length === 0}
-                      >
-                        Continue
-                      </Button>
-                    </ModalFooter>
-                  </Box>
-                </Flex>
-              </ModalContent>
-            </Modal>
-          ) : (
-            <Modal onClose={onClose} size={"4xl"} isOpen={isOpen}>
-              <ModalOverlay />
-              <ModalContent>
-                <Flex>
-                  <Box width="55%">
-                    <Image src={"https://i.gifer.com/PSFA.gif"} />
-                  </Box>
-                  <Box width="45%">
-                    <ModalHeader>Please enter the OTP</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                      <FormControl>
-                        <Input
-                          type="number"
-                          placeholder="Enter The OTP*"
-                          value={otp}
-                          maxLength={4}
-                          onChange={(e) => setOtp(e.target.value)}
-                        />
-                      </FormControl>
-                      <Text>OTP sent to {mobile}</Text>
-                      <Flex>
-                        <Box color="tomato">Resend Now</Box>
-                        <Spacer />
-                        <Box color="tomato">Change Number</Box>
-                      </Flex>
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button
-                        onClick={() => {
-                          setIsAuth(true);
-                          onClose();
-                        }}
-                      >
-                        Submit
-                      </Button>
-                    </ModalFooter>
-                  </Box>
-                </Flex>
-              </ModalContent>
-            </Modal>
-          )}
+          <Box><SignIn /></Box>
         </Box>
       </Box>
     </Box>
